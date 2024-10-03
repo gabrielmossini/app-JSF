@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Cadastro de Jogo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<h:form id="formulario">
+		<h:outputLabel value="Código"></h:outputLabel>
+		<br></br>
+		<h:inputText id="codigoPersonagem" value="#{personagemController.personagem.codigo}" required="true" ></h:inputText>
+		<h:message for="codigoPersonagem"></h:message>
+		<br></br>
+		<h:outputLabel value="Nome"></h:outputLabel>
+		<br></br>
+		<h:inputText id="nomePersonagem" value="#{personagemController.personagem.nome}" required="true"></h:inputText>
+		<h:message for="nomePersonagem"></h:message>
+		<br></br>
+		<br></br>
+		<h:selectOneMenu value="#{personagemController.nomeJogoSelecionado}">
+			<f:selectItems value="#{personagemController.jogos}" var="a" itemLabel="#{a.nome}">
+			</f:selectItems>
+		</h:selectOneMenu>
+		<br></br>
+		<br></br>
+		<h:commandButton value="Confirmar" action="#{personagemController.confirmarCadastro}">
+		</h:commandButton>
+	</h:form>		
+</h:body>
+</html>

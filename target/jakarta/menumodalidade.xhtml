@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Cadastro de modalidade</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputLabel value="Menu de modalidade"></h:outputLabel>
+		<br></br>
+		<h:commandButton value="Cadastrar" action="#{modalidadeControlador.prepararCadastro}">
+			</h:commandButton>
+			
+		<h:commandButton value="Pesquisar" 
+			action="#{modalidadeControlador.prepararConsulta}">
+			</h:commandButton>	
+		
+		<h:commandButton value="Testar" 
+			action="#{modalidadeControlador.testar}">
+			</h:commandButton>	
+			
+		<h:commandButton value="Voltar" 
+			action="menu.xhtml">
+			</h:commandButton>	
+		</h:form>
+</h:body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Cadastro de modalidade</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<h:form>
+		<h:messages></h:messages>
+		<h:outputLabel value="Cadastro de modalidade"></h:outputLabel>
+		<br></br>
+		<h:outputLabel value="Codigo"></h:outputLabel>
+		<br></br>
+		<h:inputText id="idMod" required="true" value="#{modalidadeControlador.modalidade.id}"></h:inputText>
+		<h:message for="idMod"></h:message>
+		<br></br>
+		<h:outputLabel value="Nome"></h:outputLabel>
+		<br></br>
+		<h:inputText id="nomeMod" required="true" value="#{modalidadeControlador.modalidade.nome}"></h:inputText>
+		<h:message for="nomeMod"></h:message>
+		<br></br>
+		<h:commandButton value="Gravar" action="#{modalidadeControlador.gravar()}"></h:commandButton>
+		<br></br>
+		<h:commandButton value="Voltar" immediate="true" 
+		action="menumodalidade.xhtml"></h:commandButton>
+	</h:form>
+</h:body>
+</html>

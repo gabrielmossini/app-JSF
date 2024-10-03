@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Consultar Desenvolvedoras</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<h:form>
+		<h:messages warnClass="mensagemAlerta" fatalClass="mensagemFatal" 
+			showDetail="true"  showSummary="true">
+		</h:messages>
+		<h:dataTable value="#{desenvolvedoraController.desenvolvedorasRecuperadas}" var="d" border="1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Codigo"></h:outputLabel> 
+				</f:facet>
+				<h:outputLabel value="#{d.codigo}"></h:outputLabel> 
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Nome"></h:outputLabel> 
+				</f:facet>
+				<h:outputLabel value="#{d.nome}"></h:outputLabel> 
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Ações"></h:outputLabel> 
+				</f:facet>
+				<h:commandButton value="Del." action="#{desenvolvedoraController.removerDesenvolvedora(d)}" onclick="return confirm('Confirma a exclusao?')"></h:commandButton>
+			</h:column>
+		</h:dataTable>
+		<br>
+			<h:commandButton value="Novo Cadastro" 
+				action="#{desenvolvedoraController.prepararCadastro}" >
+			</h:commandButton> 
+			<br></br>
+			<br></br>
+			<h:commandButton value="Voltar" 
+				action="#{desenvolvedoraController.prepararMenu}" >
+			</h:commandButton> 
+		</br>
+	</h:form>		
+</h:body>
+</html>
