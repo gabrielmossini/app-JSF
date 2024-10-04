@@ -31,25 +31,21 @@ public class DesenvolvedoraController implements Serializable {
 
 	public String confirmarCadastro() {
 		try {
-			// Ensure that 'desenvolvedora' is properly initialized before persisting
 			if (desenvolvedora == null) {
-				desenvolvedora = new Desenvolvedora();  // Create a new instance if it's null
+				desenvolvedora = new Desenvolvedora();
 			}
 
-			// Persist the new instance to the database
 			em.persist(desenvolvedora);
 
-			// Commit the transaction and return the navigation outcome
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro confirmado com sucesso!", ""));
 
 			return "consultardesenvolvedora.xhtml";
 		} catch (Exception e) {
-			// Handle any errors, such as persistence issues or transaction failures
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao confirmar cadastro", e.getMessage()));
 
-			return null; // Stay on the same page if there's an error
+			return null; 
 		}
 	}
 
@@ -61,18 +57,14 @@ public class DesenvolvedoraController implements Serializable {
 
 	public void removerDesenvolvedora(Desenvolvedora d) {
 		try {
-			// Merge to reattach the entity, ensuring it's managed
 			Desenvolvedora desenvolvedora = em.merge(d);
-			// Remove the managed entity
 			em.remove(desenvolvedora);
 
-			// Commit success message
 			FacesContext f = FacesContext.getCurrentInstance();
 			String mensagem = "Registro excluído com sucesso!";
 			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, mensagem, "");
 			f.addMessage(null, facesMessage);
 		} catch (Exception e) {
-			// Handle possible exceptions
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir", e.getMessage()));
 		}
 	}

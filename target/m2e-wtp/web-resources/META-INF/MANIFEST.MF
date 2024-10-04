@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: Nathan Rodrigues
-Build-Jdk: 17.0.9
+Built-By: mossini
+Build-Jdk: 21.0.4
 Created-By: Maven Integration for Eclipse
 

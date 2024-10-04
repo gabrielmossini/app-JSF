@@ -1,11 +1,20 @@
 package jakarta.beans;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Jogo {
 	
+	@Id
 	private Integer codigo;
 	
 	private String nome;
 	
+	@ManyToOne
+	@JoinColumn(name= "desenvolvedora_codigo")
 	private Desenvolvedora desenvolvedora;
 	
 	public Jogo() {
