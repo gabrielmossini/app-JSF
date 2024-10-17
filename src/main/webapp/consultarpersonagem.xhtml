@@ -32,17 +32,15 @@
 						<f:facet name="header">
 							<h:outputLabel value="Ações"></h:outputLabel> 
 						</f:facet>
-						<h:commandButton value="Excluir" action="#{personagemController.removerPersonagem(p)}" onclick="return confirm('Confirma a exclusao?')" class="btn btn-danger">
+						<h:commandButton value="Excluir" action="#{personagemController.removerPersonagem(p)}" onclick="return confirm('Confirma a exclusao?')" class="btn btn-danger me-2">
         				<h:commandButton value="Editar" action="#{personagemController.prepararEdicao(p)}" class="btn btn-primary" /></h:commandButton>
                       </h:column>
 				</h:dataTable>
 				<div class="row">
-					<div class="col-lg-2">
+					<div class="col-lg-4">
 						<h:commandButton value="Voltar" 
-							action="#{personagemController.prepararMenu}" class="btn btn-warning">
+							action="#{personagemController.prepararMenu}" class="btn btn-warning me-2">
 						</h:commandButton> 
-					</div>				
-					<div class="col-lg-2">
 						<h:commandButton value="Novo Cadastro" 
 							action="#{personagemController.prepararCadastro}" class="btn btn-success">
 						</h:commandButton>

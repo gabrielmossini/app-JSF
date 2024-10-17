@@ -33,15 +33,13 @@
 						<f:facet name="header">
 							<h:outputLabel value="Ações"></h:outputLabel> 
 						</f:facet>
-						<h:commandButton value="Excluir" action="#{jogoController.removerJogo(j)}" onclick="return confirm('Confirma a exclusao?')" class="btn btn-danger	">
+						<h:commandButton value="Excluir" action="#{jogoController.removerJogo(j)}" onclick="return confirm('Confirma a exclusao?')" class="btn btn-danger me-2">
 						<h:commandButton value="Editar" action="#{jogoController.prepararEdicao(j)}" class="btn btn-primary"/></h:commandButton>
 					</h:column>
 				</h:dataTable>
 				<div class="row">
-					<div class="col-lg-2">
-						<h:commandButton value="Voltar" action="#{jogoController.prepararMenu}" class="btn btn-warning"></h:commandButton> 
-					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-4">
+						<h:commandButton value="Voltar" action="#{jogoController.prepararMenu}" class="btn btn-warning me-2"></h:commandButton> 
 						<h:commandButton value="Novo Cadastro" action="#{jogoController.prepararCadastro}" class="btn btn-success"></h:commandButton> 
 					</div>
 				</div>
