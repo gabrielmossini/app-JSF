@@ -11,8 +11,6 @@ import jakarta.enterprise.context.Conversation;
 import jakarta.enterprise.context.ConversationScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.fema.JogoDao;
-import jakarta.fema.PersonagemDao;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
@@ -98,6 +96,48 @@ public class PersonagemController implements Serializable {
 			System.out.println("personagem: " + p.getCodigo() + " - " + p.getNome());
 		}
 		return "consultarpersonagem.xhtml";
+	}
+	
+	
+	public String prepararEdicao(Personagem p) {
+	    if (p != null) {
+	        this.personagem = p;
+	    } else {
+	        this.personagem = new Personagem();
+	    }
+	    jogos = em.createNativeQuery("SELECT * FROM jogo", Jogo.class).getResultList();
+	    return "editarpersonagem.xhtml";
+	}
+	
+	public String atualizaPersonagem() {
+	    try {
+	        Personagem existingPersonagem = em.find(Personagem.class, personagem.getCodigo());
+	        if (existingPersonagem == null) {
+	            FacesContext.getCurrentInstance().addMessage(null,
+	                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Código inválido! Personagem não encontrado.", ""));
+	            return null;
+	        }
+
+	        existingPersonagem.setNome(personagem.getNome());
+
+	        if (nomeJogoSelecionado != null && !nomeJogoSelecionado.isEmpty()) {
+	            Jogo selectedJogo = em.createQuery(
+	                "SELECT d FROM Jogo d WHERE d.nome = :nome", Jogo.class)
+	                .setParameter("nome", nomeJogoSelecionado)
+	                .getSingleResult();
+	            existingPersonagem.setJogo(selectedJogo);
+	        }
+
+	        em.merge(existingPersonagem);
+	        FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage(FacesMessage.SEVERITY_INFO, "Personagem atualizado com sucesso!", ""));
+	        return "consultarpersonagem.xhtml";  
+	    } catch (Exception e) {
+	        FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao atualizar Persongem", e.getMessage()));
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
 	
 	public String prepararMenu() {

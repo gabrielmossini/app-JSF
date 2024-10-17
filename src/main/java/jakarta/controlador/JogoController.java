@@ -10,8 +10,6 @@ import jakarta.enterprise.context.Conversation;
 import jakarta.enterprise.context.ConversationScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.fema.DesenvolvedoraDao;
-import jakarta.fema.JogoDao;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
@@ -102,6 +100,49 @@ public class JogoController implements Serializable {
 		
 		return "consultarjogo.xhtml";
 	}
+	
+	public String prepararEdicao(Jogo j) {
+	    if (j != null) {
+	        this.jogo = j;
+	    } else {
+	        this.jogo = new Jogo();
+	    }
+	    desenvolvedoras = em.createNativeQuery("SELECT * FROM desenvolvedora", Desenvolvedora.class).getResultList();
+	    return "editarjogo.xhtml";
+	}
+	
+	public String atualizarJogo() {
+	    try {
+	        Jogo existingJogo = em.find(Jogo.class, jogo.getCodigo());
+	        if (existingJogo == null) {
+	            FacesContext.getCurrentInstance().addMessage(null,
+	                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Código inválido! Jogo não encontrado.", ""));
+	            return null;
+	        }
+
+	        existingJogo.setNome(jogo.getNome());
+
+	        if (nomeDesenvolvedoraSelecionada != null && !nomeDesenvolvedoraSelecionada.isEmpty()) {
+	            Desenvolvedora selectedDesenvolvedora = em.createQuery(
+	                "SELECT d FROM Desenvolvedora d WHERE d.nome = :nome", Desenvolvedora.class)
+	                .setParameter("nome", nomeDesenvolvedoraSelecionada)
+	                .getSingleResult();
+	            existingJogo.setDesenvolvedora(selectedDesenvolvedora);
+	        }
+
+	        em.merge(existingJogo);
+	        FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage(FacesMessage.SEVERITY_INFO, "Jogo atualizado com sucesso!", ""));
+	        return "consultarjogo.xhtml";  
+	    } catch (Exception e) {
+	        FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao atualizar Jogo", e.getMessage()));
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+
+
 	
 	public String prepararMenu() {
 		conversation.end();

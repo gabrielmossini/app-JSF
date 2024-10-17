@@ -32,8 +32,9 @@
 						<f:facet name="header">
 							<h:outputLabel value="Ações"></h:outputLabel> 
 						</f:facet>
-						<h:commandButton value="Excluir" action="#{personagemController.removerPersonagem(p)}" onclick="return confirm('Confirma a exclusao?')" class="btn btn-danger"></h:commandButton>
-					</h:column>
+						<h:commandButton value="Excluir" action="#{personagemController.removerPersonagem(p)}" onclick="return confirm('Confirma a exclusao?')" class="btn btn-danger">
+        				<h:commandButton value="Editar" action="#{personagemController.prepararEdicao(p)}" class="btn btn-primary" /></h:commandButton>
+                      </h:column>
 				</h:dataTable>
 				<div class="row">
 					<div class="col-lg-2">

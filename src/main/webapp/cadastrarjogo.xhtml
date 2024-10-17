@@ -10,19 +10,30 @@
 <h:body>
 	<div class="container mt-4">
 		<div class="row col-lg-12 text-center">
+			<h1>Cadastro de Jogos</h1>
 			<h:form id="formulario">
-				<h:outputLabel value="Código"></h:outputLabel>
-				<h:inputText id="codigoJogo" value="#{jogoController.jogo.codigo}" required="true" ></h:inputText>
-				<h:message for="codigoJogo"></h:message>
-				<h:outputLabel value="Nome"></h:outputLabel>
-				<h:inputText id="nomeJogo" value="#{jogoController.jogo.nome}" required="true"></h:inputText>
-				<h:message for="nomeJogo"></h:message>
-				<h:selectOneMenu value="#{jogoController.nomeDesenvolvedoraSelecionada}">
-					<f:selectItems value="#{jogoController.desenvolvedoras}" var="a" itemLabel="#{a.nome}">
-					</f:selectItems>
-				</h:selectOneMenu>
-				<h:commandButton value="Confirmar" action="#{jogoController.confirmarCadastro}">
-				</h:commandButton>
+				<div class="form-group mt-4">
+					<h:outputLabel value="Código"></h:outputLabel>
+					<h:inputText id="codigoJogo" value="#{jogoController.jogo.codigo}" required="true" ></h:inputText>
+					<h:message for="codigoJogo"></h:message>
+				</div>
+				<div class="form-group mt-4">
+					<h:outputLabel value="Nome"></h:outputLabel>
+					<h:inputText id="nomeJogo" value="#{jogoController.jogo.nome}" required="true"></h:inputText>
+					<h:message for="nomeJogo"></h:message>
+				</div>
+				<div class="form-group mt-4">
+						<h:selectOneMenu id="desenvolvedora" value="#{jogoController.nomeDesenvolvedoraSelecionada}" required="true" requiredMessage="A desenvolvedora é obrigatória.">
+					    <f:selectItem itemLabel="-- Selecione --" itemValue="" />
+					    <f:selectItems value="#{jogoController.desenvolvedoras}" var="desenvolvedora" itemLabel="#{desenvolvedora.nome}" itemValue="#{desenvolvedora.nome}" />
+					</h:selectOneMenu>
+				</div>
+				<div class="container mt-4 d-flex justify-content-center">
+					<div class="col-lg-12 text-center">
+						<h:commandButton value="Voltar" action="consultarjogo.xhtml" immediate="true" class="btn btn-warning"/>
+						<h:commandButton value="Confirmar" action="#{jogoController.confirmarCadastro}" class="btn btn-success"></h:commandButton>
+					</div>
+				</div>
 			</h:form>
 		</div>
 	</div>		

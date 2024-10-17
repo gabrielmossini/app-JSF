@@ -11,7 +11,7 @@
 <h:body>
 	<div class="container mt-4">
 		<div class="row col-lg-12 text-center">
-			<h1>Lista de Desenvolvedoras</h1>
+			<h1>Lista Jogos</h1>
 			<h:form>
 				<h:messages warnClass="mensagemAlerta" fatalClass="mensagemFatal" 
 					showDetail="true"  showSummary="true">
@@ -33,7 +33,8 @@
 						<f:facet name="header">
 							<h:outputLabel value="Ações"></h:outputLabel> 
 						</f:facet>
-						<h:commandButton value="Excluir" action="#{jogoController.removerJogo(j)}" onclick="return confirm('Confirma a exclusao?')" class="btn btn-danger	"></h:commandButton>
+						<h:commandButton value="Excluir" action="#{jogoController.removerJogo(j)}" onclick="return confirm('Confirma a exclusao?')" class="btn btn-danger	">
+						<h:commandButton value="Editar" action="#{jogoController.prepararEdicao(j)}" class="btn btn-primary"/></h:commandButton>
 					</h:column>
 				</h:dataTable>
 				<div class="row">

@@ -82,6 +82,27 @@ public class DesenvolvedoraController implements Serializable {
 		return "consultardesenvolvedora.xhtml";
 	}
 	
+	public String prepararEdicao(Desenvolvedora d) {
+		this.desenvolvedora = d; 
+		return "editardesenvolvedora.xhtml";
+	}
+
+	public String atualizarDesenvolvedora() {
+		try {
+			em.merge(desenvolvedora);
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Desenvolvedora atualizada com sucesso!", ""));
+
+			return "consultardesenvolvedora.xhtml";
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao atualizar desenvolvedora", e.getMessage()));
+
+			return null;
+		}
+	}
+	
 	public String prepararMenu() {
 		conversation.end();
 		return "menuprincipal.xhtml";
